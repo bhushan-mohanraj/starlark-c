@@ -9,13 +9,17 @@ HEADERS = $(wildcard src/*.h src/*/*.h)
 OBJ := $(SRC:.c=.o)
 BIN := starlark
 
-default: all
+default: run
 
 $(BIN): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: run
+run: all
+	./$(BIN)
 
 .PHONY: all
 all: $(BIN)
