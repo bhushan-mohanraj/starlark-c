@@ -5,8 +5,8 @@
 
 #include "panic.h"
 
-uint32_t consume_byte(char **stream) {
-    char c = **stream;
+uint32_t consume_byte(uint8_t **stream) {
+    uint8_t c = **stream;
     if (c) {
         (*stream)++;
         return c;
@@ -15,8 +15,8 @@ uint32_t consume_byte(char **stream) {
     }
 }
 
-uint32_t consume_continuation_byte(char **stream) {
-    char c = **stream;
+uint32_t consume_continuation_byte(uint8_t **stream) {
+    uint8_t c = **stream;
 
     // The first two bytes must be 10.
     if ((c >> 6) == 2) {
@@ -27,7 +27,7 @@ uint32_t consume_continuation_byte(char **stream) {
     }
 }
 
-uint8_t get_code_point_length(char c) {
+uint8_t get_code_point_length(uint8_t c) {
     if ((c >> 7) == 0) {
         return 1;
     }
@@ -54,9 +54,9 @@ uint8_t get_code_point_length(char c) {
 #define LEADING_3_BYTE_MASK 15
 #define LEADING_4_BYTE_MASK 7
 
-uint32_t next_code_point(char **stream) {
+uint32_t next_code_point(uint8_t **stream) {
     uint32_t c = consume_byte(stream);
-    uint8_t length = get_code_point_length((char)c);
+    uint8_t length = get_code_point_length(c);
 
     if (length == 1) {
         return c;
