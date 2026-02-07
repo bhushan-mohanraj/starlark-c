@@ -3,14 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "panic.h"
+
 uint32_t consume_byte(char **stream) {
     char c = **stream;
     if (c) {
         (*stream)++;
         return c;
     } else {
-        fprintf(stderr, "UTF8 error: expected non-null byte.\n");
-        exit(1);
+        panic("UTF8 error: expected non-null byte");
     }
 }
 
@@ -22,8 +23,7 @@ uint32_t consume_continuation_byte(char **stream) {
         (*stream)++;
         return c;
     } else {
-        fprintf(stderr, "UTF8 error: expected continuation byte.\n");
-        exit(1);
+        panic("UTF8 error: expected continuation byte");
     }
 }
 
@@ -43,8 +43,7 @@ uint8_t get_code_point_length(char c) {
     else if ((c >> 3) == 30) {
         return 4;
     } else {
-        fprintf(stderr, "UTF8 error: expected leading byte.\n");
-        exit(1);
+        panic("UTF8 error: expected leading byte");
     }
 }
 
@@ -55,9 +54,6 @@ uint8_t get_code_point_length(char c) {
 #define LEADING_3_BYTE_MASK 15
 #define LEADING_4_BYTE_MASK 7
 
-// Get the next code point.
-//
-// `stream` must be a nonempty, UTF8-encoded string.
 uint32_t next_code_point(char **stream) {
     uint32_t c = consume_byte(stream);
     uint8_t length = get_code_point_length((char)c);
@@ -85,7 +81,6 @@ uint32_t next_code_point(char **stream) {
                ((c3 & CONTINUATION_BYTE_MASK) << 6) |
                (c4 & CONTINUATION_BYTE_MASK);
     } else {
-        fprintf(stderr, "UTF8 error: incorrect code point length.\n");
-        exit(1);
+        panic("UTF8 error: incorrect code point length");
     }
 }
