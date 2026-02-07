@@ -1,0 +1,39 @@
+Hello, UTF-8 world!
+
+Latin-1 & Extended:
+Café naïve fiancé coöperate
+Ångström Straße façade niño jalapeño
+Łódź Žižek Dvořák Œuvre Æsir Þingvellir
+
+Math & Symbols:
+± × ÷ ≠ ≤ ≥ ∞ √ ∑ ∏ ∫ ∂
+© ® ™ § ¶ • † ‡
+
+Arrows & Shapes:
+← ↑ → ↓ ↔ ⇐ ⇒ ⇔
+○ ● △ ▲ □ ■ ★ ☆
+
+Currency:
+$ € £ ¥ ₩ ₽ ₹ ₿
+
+Greek:
+α β γ δ ε ζ η θ λ μ π σ φ ω
+Δ Σ Ω
+
+Cyrillic:
+Привет мир
+Ж Щ Ю Я ё
+
+CJK:
+中文 日本語 한글
+漢字 仮名 カタカナ
+
+RTL (Arabic & Hebrew):
+السلام عليكم
+שלום עולם
+
+Combining marks:
+á ê ñ ö ů
+
+Emoji:
+😀 😂 🤖 🚀 🌍 ❤️ 🧠

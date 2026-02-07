@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "utf8.h"
+
 char *read_file(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (!file) {
@@ -29,15 +31,14 @@ char *read_file(const char *filename) {
 }
 
 int main(int argc, char **argv) {
-    char *filename;
-
-    if (argc != 2) {
-        filename = "main.star";
-    } else {
-        filename = argv[1];
-    }
-
+    char *filename = argc == 2 ? argv[1] : "examples/test.txt";
     printf("%s\n", filename);
+
+    char *stream = read_file(filename);
+    unsigned i = 0;
+    while (*stream) {
+        printf("%04d %08x\n", i++, utf8_decode_byte((uint8_t **) &stream));
+    }
 
     return 0;
 }
